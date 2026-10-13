@@ -1,5 +1,6 @@
 package com.ghulam.auth.controllers;
 
+import com.ghulam.auth.dtos.LoginRequest;
 import com.ghulam.auth.dtos.RegisterRequest;
 import com.ghulam.auth.service.CustomerService;
 import jakarta.validation.Valid;
@@ -25,8 +26,9 @@ public class AuthController {
     }
 
     @PostMapping(path = "/login")
-    public ResponseEntity<?> login() {
-        String message = "Customer login done.";
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
+        var out = customerService.login(loginRequest);
+        String message = out ? "Customer login done." : "Customer login failed.";
         return ResponseEntity.ok(message);
     }
 

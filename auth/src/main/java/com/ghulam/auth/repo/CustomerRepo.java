@@ -21,4 +21,10 @@ public class CustomerRepo {
         String script = "INSERT INTO customers(customer_id, mobile_number, name, password) VALUES (?, ?, ?, ?)";
         jdbc.update(script, customerId, mobileNumber, name, password);
     }
+
+    public boolean findCustomer(String mobileNumber, String password) {
+        String script = "SELECT customer_id FROM customers WHERE mobile_number = ? AND password = ?";
+        var out = jdbc.queryForList(script, String.class, mobileNumber, password);
+        return !out.isEmpty();
+    }
 }

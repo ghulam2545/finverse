@@ -1,8 +1,10 @@
 package com.ghulam.auth.service;
 
+import com.ghulam.auth.dtos.LoginRequest;
 import com.ghulam.auth.dtos.RegisterRequest;
 import com.ghulam.auth.entities.Customer;
 import com.ghulam.auth.repo.CustomerRepo;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,5 +24,11 @@ public class CustomerService {
         customer.setPassword(registerRequest.password());
         customerRepo.saveCustomer(customer);
         return true;
+    }
+
+    public boolean login(@Valid LoginRequest loginRequest) {
+        String mobileNumber = loginRequest.mobileNumber();
+        String password = loginRequest.password();
+        return customerRepo.findCustomer(mobileNumber, password);
     }
 }
