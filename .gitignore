@@ -29,6 +29,7 @@ Thumbs.db
 
 # Environment and secrets
 report/.env
+auth/.env
 .env.*
 !.env.example
 
