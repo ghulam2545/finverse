@@ -28,7 +28,7 @@ out/
 Thumbs.db
 
 # Environment and secrets
-.env
+report/.env
 .env.*
 !.env.example
 
